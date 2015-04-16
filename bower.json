@@ -10,7 +10,7 @@
   "main": [
     "./src/ionic-fancy-select.js"
     "./templates/item-template.html",
-    "./templates/modal-template.html",
+    "./templates/modal-template.html"
   ],
   "dependencies": {
     "angular": "^1/2"
