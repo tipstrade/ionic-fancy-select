@@ -8,7 +8,7 @@
     "url": "git://github.com/tipstrade/ionic-fancy-select.git"
   },
   "main": [
-    "./src/ionic-fancy-select.js"
+    "./src/ionic-fancy-select.js",
     "./templates/item-template.html",
     "./templates/modal-template.html"
   ],
