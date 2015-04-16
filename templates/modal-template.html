@@ -1,0 +1,20 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-positive">
+    <button class="button-positive button-icon ion-ios-arrow-back" ng-click="hideItems()" />
+    <h1 class="title">{{headerText}}</h1>
+     <button class="button-positive button-icon ion-checkmark" ng-click="validate()" />
+  </ion-header-bar>
+  
+  <ion-content>
+    <ion-list>
+      <ion-toggle class="item" ng-checked="item.checked" ng-if="multiSelect" ng-model="item.checked" ng-repeat="item in items">
+        <img alt="{{item.text}}" class="fancy-select-icon" ng-if="item.icon != null" src="{{item.icon}}"/>
+        {{item.text}}
+      </ion-toggle>
+      <label class="item" ng-click="validate(item)" ng-if="!multiSelect" ng-repeat="item in items">
+        <img alt="{{item.text}}" class="fancy-select-icon" ng-if="item.icon != null" src="{{item.icon}}"/>
+        {{item.text}}
+      </label>
+    </div>
+  </ion-content>
+</ion-modal-view>

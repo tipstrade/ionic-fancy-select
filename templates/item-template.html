@@ -1,0 +1,8 @@
+<ion-list>
+  <ion-item ng-click="showItems($event)">
+    {{text}}
+    <span class="item-note">{{noteText}}
+      <img class="{{noteImgClass}}" ng-if="noteImg != null" src="{{noteImg}}" />
+    </span>
+  </ion-item>
+</ion-list>
