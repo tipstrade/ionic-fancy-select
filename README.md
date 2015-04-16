@@ -1,4 +1,3 @@
-# ionic-fancy-select
 A Fancy Select
 ==============
 
