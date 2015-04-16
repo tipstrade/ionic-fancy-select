@@ -7,7 +7,7 @@
     "type": "git",
     "url": "git://github.com/tipstrade/ionic-fancy-select.git"
   },
-  "main": "./src/fancy-select.js",
+  "main": "./src/ionic-fancy-select.js",
   "dependencies": {
     "angular": "^1/2"
   },

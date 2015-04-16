@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("fancy-select", ["ionic"])
+angular.module("ionic-fancy-select", ["ionic"])
 
 .directive("fancySelect", [function($ionicModal) {
   return {

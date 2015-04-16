@@ -11,4 +11,4 @@ Usage
 ------
 
 - Install via bower: `bower install --save`
-- Include as a dependency in your app: `angular.module('myApp', ['fancy-select'])`
+- Include as a dependency in your app: `angular.module('myApp', ['ionic-fancy-select'])`
