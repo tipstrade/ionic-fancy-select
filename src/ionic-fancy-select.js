@@ -16,7 +16,7 @@ angular.module("ionic-fancy-select", ["ionic"])
      */
     template: function(element, attrs) {
       if (attrs.templateUrl) {
-        return "<div ng-include='" + attrs.templateUrl + "'></div>";
+        return "<ng-include src=\"'" + attrs.templateUrl + "'\"></ng-include>";
       } else {
         return '<ion-list> <ion-item ng-click=showItems($event)> {{text}} <span class=item-note>{{noteText}} <img class={{noteImgClass}} ng-if="noteImg != null" src="{{noteImg}}"/> </span> </ion-item> </ion-list>';
       }
