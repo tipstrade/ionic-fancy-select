@@ -1,20 +1,16 @@
 # A Fancy Select
-==============
 
 ## for AngularJS & Ionic Framework
--------------------------------
 
 This is the implimentation of the concept described in
 [Cool Select with ionic](http://codepen.io/mhartington/pen/CImqy?editors=101) by Mike Hartington
 
 ## Installation
-------------
 
 - Install via bower: `bower install --save`
 - Include as a dependency in your app: `angular.module('myApp', ['ionic-fancy-select'])`
 
 ## Usage
------
 
 ```html
 <!-- Include the plugin -->
@@ -47,10 +43,8 @@ var myApp = angular.module("myApp", ["ionic", "ionic-fancy-select"]);
 ```
 
 ## Reference
----------
 
 ### Property Attributes
------------------------
 
 #### header-text
 * Type: String
@@ -115,7 +109,6 @@ header bar.
 * An optional list of CSS classes that can be used to customise the **note-img** in the default fancy-select element.
 
 ### Callback attributes
------------------------
 
 #### value-changed
 * Parameters: value - The currently selected value or list of values
