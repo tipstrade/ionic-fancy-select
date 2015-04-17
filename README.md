@@ -37,11 +37,6 @@ This is the implimentation of the concept described in
 </fancy-select>
 ```
 
-```javascript
-// Include in the module definition
-var myApp = angular.module("myApp", ["ionic", "ionic-fancy-select"]);
-```
-
 ## Reference
 
 ### Property Attributes
@@ -57,7 +52,7 @@ header bar.
 
 #### value
 * Type: Array or Object
-* The currently selected item. If **mult-select** is set to true, an array is returned containg a list of all the * values, otherwise a single value is returned.
+* The currently selected item. If [mult-select](#multi-select) is set to true, an array is returned containg a list of all the values, otherwise a single value is returned.
 
 #### icon-property
 * Type: String
@@ -67,7 +62,7 @@ header bar.
 #### value-property
 * Type: String
 * Default: "id"
-* The name of the property that is to be returned by **value**.
+* The name of the property that is to be returned by [value](#value).
 
 #### text-property
 * Type: String
@@ -106,7 +101,7 @@ header bar.
 
 #### not-img-class
 * Type: CSS class
-* An optional list of CSS classes that can be used to customise the **note-img** in the default fancy-select element.
+* An optional list of CSS classes that can be used to customise the [note-img](#note-img) in the default fancy-select element.
 
 ### Callback attributes
 
