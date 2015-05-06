@@ -89,6 +89,14 @@ angular.module("ionic-fancy-select", ["ionic"])
         scope.modal.remove();
       });
       
+      scope.getItemText = function(item) {
+        return scope.textProperty ? item[scope.textProperty] : item;
+      };
+      
+      scope.getItemValue = function(item) {
+        return scope.valueProperty ? item[scope.valueProperty] : item;
+      };
+      
       // Gets the text for the specified values
       scope.getText = function(value) {
         // Push the values into a temporary array so that they can be iterated through
@@ -104,8 +112,8 @@ angular.module("ionic-fancy-select", ["ionic"])
           // Concatenate the list of selected items
           angular.forEach(scope.items, function(item, key) {
             for (var i = 0; i < temp.length; i++) {
-              if (item[scope.valueProperty] == temp[i]) {
-                text += (text.length ? ", " : "") + item[scope.textProperty];
+              if (scope.getItemValue(item) == temp[i]) {
+                text += (text.length ? ", " : "") + scope.getItemText(item);
                 break;
               }
             }
@@ -147,7 +155,7 @@ angular.module("ionic-fancy-select", ["ionic"])
             // Not checked by default
             item[scope.checkedProperty] = false;
             
-            var val = item[scope.valueProperty];
+            var val = scope.getItemValue(item);
             for (var i = 0; i < values.length; i++) {
               if (val === values[i]) {
                 item[scope.checkedProperty] = true;
@@ -170,14 +178,14 @@ angular.module("ionic-fancy-select", ["ionic"])
           if (scope.items) {
             angular.forEach(scope.items, function(item, key) {
               if (item[scope.checkedProperty]) {
-                scope.value[scope.value.length] = item[scope.valueProperty];
+                scope.value[scope.value.length] = scope.getItemValue(item);
               }
             });
           }
 
         } else {
           // Just use the current item
-          scope.value = item[scope.valueProperty];
+          scope.value = scope.getItemValue(item);
 
         }
 
@@ -192,3 +200,4 @@ angular.module("ionic-fancy-select", ["ionic"])
 
 ;
 }());
+
