@@ -76,7 +76,7 @@ angular.module("ionic-fancy-select", ["ionic"])
 
       } else {
         scope.modal = $ionicModal.fromTemplate(
-          '<ion-modal-view> <ion-header-bar class=bar-positive> <button class="button button-positive button-icon ion-ios-arrow-back" ng-click="hideItems()"/> <h1 class=title>{{headerText}}</h1> <button class="button button-positive button-icon ion-checkmark" ng-click="validate()"/> </ion-header-bar> <ion-content> <ion-list> <ion-toggle class=item ng-checked=item.checked ng-if=multiSelect ng-model=item.checked ng-repeat="item in items"> <img alt={{item.text}} class=fancy-select-icon ng-if="item.icon != null" src="{{item.icon}}"/> {{item.text}} </ion-toggle> <label class=item ng-click=validate(item) ng-if=!multiSelect ng-repeat="item in items"> <img alt={{item.text}} class=fancy-select-icon ng-if="item.icon != null" src="{{item.icon}}"/> {{item.text}} </label>  </ion-list></ion-content> </ion-modal-view>',
+          '<ion-modal-view> <ion-header-bar class="bar-positive"> <button class="button button-positive button-icon ion-ios-arrow-back" ng-click="hideItems()"/> <h1 class="title">{{headerText}}</h1> <button class="button button-positive button-icon ion-checkmark" ng-show="multiselect" ng-click="validate()"/> </ion-header-bar> <ion-content> <ion-list> <ion-item class="item-checkbox" ng-if="multiSelect" ng-repeat="item in items"> <label class="checkbox"> <input type="checkbox" ng-checked="item.checked" ng-model="item.checked"> </label>{{item.Name}}</ion-item> <label class="item" ng-click="validate(item)" ng-if="!multiSelect" ng-repeat="item in items">{{item.Name}}</label> </div></ion-content></ion-modal-view>',
           {
             scope: scope,
             animation: scope.modalAnimation
