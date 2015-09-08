@@ -6,7 +6,7 @@
 
 angular.module("ionic-fancy-select", ["ionic"])
 
-.directive("fancySelect", function($ionicModal) {
+.directive("fancySelect", function($ionicModal,$timeout) {
   return {
     // Only use as <fancy-select> tag
     restrict: "E",
@@ -192,6 +192,13 @@ angular.module("ionic-fancy-select", ["ionic"])
         scope.hideItems();
       };
       
+	  //hide items by fancy.close event
+	  scope.$on("fancy.close",function(){
+	    $timeout(function(){
+		  scope.hideItems();
+		}, 0);
+	  });
+	  
       // Watch the value property, as this is used to build the text
       scope.$watch(function(){return scope.value;}, scope.onValueChanged, true);
     }
