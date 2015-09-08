@@ -27,8 +27,8 @@ angular.module("ionic-fancy-select", ["ionic"])
       items: "=", // Needs to have a value
       value: "=", // Needs to have a value
       valueChangedCallback: "&valueChanged", // The callback used to signal that the value has changed
-      getCustomTextCallback: "&getCustomText" // The callback used to get custom text based on the selected value
-	  fsDisabled: "&fsDisabled" //This directive sets the disabled attribute on the element if the expression inside fsDisabled evaluates to truthy.
+      getCustomTextCallback: "&getCustomText", // The callback used to get custom text based on the selected value
+	  fsDisabled: "&fsDisabled" //sets the disabled attribute on the element if the expression inside fsDisabled evaluates to truthy.
     },
 
     // Hook up the directive
