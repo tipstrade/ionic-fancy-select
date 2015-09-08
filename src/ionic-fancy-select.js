@@ -18,7 +18,7 @@ angular.module("ionic-fancy-select", ["ionic"])
       if (attrs.templateUrl) {
         return "<ng-include src=\"'" + attrs.templateUrl + "'\"></ng-include>";
       } else {
-        return '<ion-list> <ion-item ng-click=showItems($event)> {{text}} <span class=item-note>{{noteText}} <img class={{noteImgClass}} ng-if="noteImg != null" src="{{noteImg}}"/> </span> </ion-item> </ion-list>';
+        return '<ion-list> <ion-item ng-click=showItems($event) ng-disabled="fsDisabled()"> {{text}} <span class=item-note>{{noteText}} <img class={{noteImgClass}} ng-if="noteImg != null" src="{{noteImg}}"/> </span> </ion-item> </ion-list>';
       }
     },
 
@@ -28,6 +28,7 @@ angular.module("ionic-fancy-select", ["ionic"])
       value: "=", // Needs to have a value
       valueChangedCallback: "&valueChanged", // The callback used to signal that the value has changed
       getCustomTextCallback: "&getCustomText" // The callback used to get custom text based on the selected value
+	  fsDisabled: "&fsDisabled" //This directive sets the disabled attribute on the element if the expression inside fsDisabled evaluates to truthy.
     },
 
     // Hook up the directive
