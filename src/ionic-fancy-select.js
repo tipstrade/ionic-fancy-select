@@ -146,7 +146,7 @@ angular.module("ionic-fancy-select", ["ionic"])
       // Shows the list
       scope.showItems = function(event) {
         event.preventDefault(); // Prevent the event from bubbling
-        if(!scope.fsDisabled){
+        if(!scope.fsDisabled()){
         // For multi-select, make sure we have an up-to-date list of checked items
         if (scope.multiSelect) {
             // Clone the list of values, as we'll splice them as we go through to reduce loops
