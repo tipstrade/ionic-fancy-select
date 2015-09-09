@@ -146,28 +146,29 @@ angular.module("ionic-fancy-select", ["ionic"])
       // Shows the list
       scope.showItems = function(event) {
         event.preventDefault(); // Prevent the event from bubbling
-        
+        if(!scope.fsDisabled){
         // For multi-select, make sure we have an up-to-date list of checked items
         if (scope.multiSelect) {
-          // Clone the list of values, as we'll splice them as we go through to reduce loops
-          var values = scope.value ? angular.copy(scope.value) : [];
+            // Clone the list of values, as we'll splice them as we go through to reduce loops
+            var values = scope.value ? angular.copy(scope.value) : [];
           
-          angular.forEach(scope.items, function(item, key) {
-            // Not checked by default
-            item[scope.checkedProperty] = false;
+            angular.forEach(scope.items, function(item, key) {
+              // Not checked by default
+              item[scope.checkedProperty] = false;
             
-            var val = scope.getItemValue(item);
-            for (var i = 0; i < values.length; i++) {
-              if (val === values[i]) {
-                item[scope.checkedProperty] = true;
-                values.splice(i, 0); // Remove it from the temporary list
-                break;
+              var val = scope.getItemValue(item);
+              for (var i = 0; i < values.length; i++) {
+                if (val === values[i]) {
+                  item[scope.checkedProperty] = true;
+                  values.splice(i, 0); // Remove it from the temporary list
+                  break;
+                }
               }
-            }
-          });
-        }
+            });
+          }
 
-        scope.modal.show();
+		  scope.modal.show();
+		}
       };
 
       // Validates the current list
