@@ -6,7 +6,7 @@
 
 angular.module("ionic-fancy-select", ["ionic"])
 
-.directive("fancySelect", function($ionicModal) {
+.directive("fancySelect", function($ionicModal,$timeout) {
   return {
     // Only use as <fancy-select> tag
     restrict: "E",
@@ -18,7 +18,7 @@ angular.module("ionic-fancy-select", ["ionic"])
       if (attrs.templateUrl) {
         return "<ng-include src=\"'" + attrs.templateUrl + "'\"></ng-include>";
       } else {
-        return '<ion-list> <ion-item ng-click=showItems($event)> {{text}} <span class=item-note>{{noteText}} <img class={{noteImgClass}} ng-if="noteImg != null" src="{{noteImg}}"/> </span> </ion-item> </ion-list>';
+        return '<ion-list> <ion-item ng-click=showItems($event) ng-disabled="fsDisabled()"> {{text}} <span class=item-note>{{noteText}} <img class={{noteImgClass}} ng-if="noteImg != null" src="{{noteImg}}"/> </span> </ion-item> </ion-list>';
       }
     },
 
@@ -27,7 +27,8 @@ angular.module("ionic-fancy-select", ["ionic"])
       items: "=", // Needs to have a value
       value: "=", // Needs to have a value
       valueChangedCallback: "&valueChanged", // The callback used to signal that the value has changed
-      getCustomTextCallback: "&getCustomText" // The callback used to get custom text based on the selected value
+      getCustomTextCallback: "&getCustomText", // The callback used to get custom text based on the selected value
+	  fsDisabled: "&fsDisabled" //sets the disabled attribute on the element if the expression inside fsDisabled evaluates to truthy.
     },
 
     // Hook up the directive
@@ -145,28 +146,29 @@ angular.module("ionic-fancy-select", ["ionic"])
       // Shows the list
       scope.showItems = function(event) {
         event.preventDefault(); // Prevent the event from bubbling
-        
+        if(!scope.fsDisabled()){
         // For multi-select, make sure we have an up-to-date list of checked items
         if (scope.multiSelect) {
-          // Clone the list of values, as we'll splice them as we go through to reduce loops
-          var values = scope.value ? angular.copy(scope.value) : [];
+            // Clone the list of values, as we'll splice them as we go through to reduce loops
+            var values = scope.value ? angular.copy(scope.value) : [];
           
-          angular.forEach(scope.items, function(item, key) {
-            // Not checked by default
-            item[scope.checkedProperty] = false;
+            angular.forEach(scope.items, function(item, key) {
+              // Not checked by default
+              item[scope.checkedProperty] = false;
             
-            var val = scope.getItemValue(item);
-            for (var i = 0; i < values.length; i++) {
-              if (val === values[i]) {
-                item[scope.checkedProperty] = true;
-                values.splice(i, 0); // Remove it from the temporary list
-                break;
+              var val = scope.getItemValue(item);
+              for (var i = 0; i < values.length; i++) {
+                if (val === values[i]) {
+                  item[scope.checkedProperty] = true;
+                  values.splice(i, 0); // Remove it from the temporary list
+                  break;
+                }
               }
-            }
-          });
-        }
+            });
+          }
 
-        scope.modal.show();
+		  scope.modal.show();
+		}
       };
 
       // Validates the current list
@@ -192,6 +194,13 @@ angular.module("ionic-fancy-select", ["ionic"])
         scope.hideItems();
       };
       
+	  //hide items by fancy.close event
+	  scope.$on("fancy.close",function(){
+	    $timeout(function(){
+		  scope.hideItems();
+		}, 0);
+	  });
+	  
       // Watch the value property, as this is used to build the text
       scope.$watch(function(){return scope.value;}, scope.onValueChanged, true);
     }
