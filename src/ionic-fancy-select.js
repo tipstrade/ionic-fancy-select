@@ -6,7 +6,7 @@
 
 angular.module("ionic-fancy-select", ["ionic"])
 
-.directive("fancySelect", function($ionicModal) {
+.directive("fancySelect", ['$ionicModal', function($ionicModal) {
   return {
     // Only use as <fancy-select> tag
     restrict: "E",
@@ -196,7 +196,7 @@ angular.module("ionic-fancy-select", ["ionic"])
       scope.$watch(function(){return scope.value;}, scope.onValueChanged, true);
     }
   };
-})
+}])
 
 ;
 }());
