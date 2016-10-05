@@ -76,7 +76,7 @@ angular.module("ionic-fancy-select", ["ionic"])
 
       } else {
         scope.modal = $ionicModal.fromTemplate(
-          '<ion-modal-view> <ion-header-bar class="bar-positive"> <button class="button button-positive button-icon ion-ios-arrow-back" ng-click="hideItems()"/> <h1 class="title">{{headerText}}</h1> <button class="button button-positive button-icon ion-checkmark" ng-show="multiSelect" ng-click="validate()"/> </ion-header-bar> <ion-content> <ion-list> <ion-item class="item-checkbox" ng-if="multiSelect" ng-repeat="item in items"> <label class="checkbox"> <input type="checkbox" ng-checked="item.checked" ng-model="item.checked"> </label>{{item.Name}}</ion-item> <label class="item" ng-click="validate(item)" ng-if="!multiSelect" ng-repeat="item in items">{{item.Name}}</label> </div></ion-content></ion-modal-view>',
+          '<ion-modal-view> <ion-header-bar class="bar-positive"> <button class="button button-positive button-icon ion-ios-arrow-back" ng-click="hideItems()"/> <h1 class="title">{{headerText}}</h1> <button class="button button-positive button-icon ion-checkmark" ng-if="multiSelect" ng-click="validate()"/> <button class="button button-positive button-icon ion-backspace" ng-if="!multiSelect && allowEmpty" ng-click="removeSelection()" /> </ion-header-bar> <ion-content> <ion-list> <ion-item class="item-checkbox" ng-if="multiSelect" ng-repeat="item in items"> <label class="checkbox"> <input type="checkbox" ng-checked="item.checked" ng-model="item.checked"> </label>{{item.Name}}</ion-item> <label class="item" ng-click="validate(item)" ng-if="!multiSelect" ng-repeat="item in items">{{item.Name}}</label> </div></ion-content></ion-modal-view>',
           {
             scope: scope,
             animation: scope.modalAnimation
@@ -192,6 +192,12 @@ angular.module("ionic-fancy-select", ["ionic"])
         scope.hideItems();
       };
       
+      scope.removeSelection = function() {
+	      scope.text = scope.defaultText;
+	      delete scope.value;
+	      scope.hideItems();
+      };
+
       // Watch the value property, as this is used to build the text
       scope.$watch(function(){return scope.value;}, scope.onValueChanged, true);
     }
